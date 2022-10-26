@@ -4,8 +4,9 @@ import {
   ShoppingCartIcon,
   ArrowDownCircleIcon,
 } from "@heroicons/react/24/solid";
+import { signIn, signOut, useSession } from "next-auth/react";
 
-export const Header = () => {
+export const Navbar = () => {
   return (
     <header>
       <div className="h-16 flex items-center bg-amazon_blue grow p-1 py-2">
@@ -27,7 +28,7 @@ export const Header = () => {
         </div>
         {/* RIGHT*/}
         <div className="text-white flex items-center text-xs md:text-sm space-x-6 mx-6 whitespace-nowrap">
-          <div className="hover:underline cursor-pointer">
+          <div onClick={signIn} className="hover:underline cursor-pointer">
             <p>Olá, Carlos Henrique</p>
             <p className="font-bold">Contas & Listas</p>
           </div>

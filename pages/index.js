@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 // COMPONENTS
-import { Header } from "../components/Header";
+import { Navbar } from "../components/Navbar";
 import { Banner } from "../components/Banner";
 import { ProductFeed } from "../components/ProductFeed";
+import { useSession } from "next-auth/react";
 
 export default function Home({ products }) {
   return (
     <div>
       <nav>
-        <Header />
+        <Navbar />
       </nav>
       <main className="max-w-8xl mx-auto">
         <Banner />

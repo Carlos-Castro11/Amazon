@@ -7,6 +7,8 @@ import {
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export const Navbar = () => {
+  const { data: session, status } = useSession();
+
   return (
     <header>
       <div className="h-16 flex items-center bg-amazon_blue grow p-1 py-2">
@@ -28,8 +30,11 @@ export const Navbar = () => {
         </div>
         {/* RIGHT*/}
         <div className="text-white flex items-center text-xs md:text-sm space-x-6 mx-6 whitespace-nowrap">
-          <div onClick={signIn} className="hover:underline cursor-pointer">
-            <p>Olá, Carlos Henrique</p>
+          <div
+            onClick={!session ? signIn : signOut}
+            className="hover:underline cursor-pointer"
+          >
+            <p>{session ? `Olá, ${session.user.name}` : "Fazer Login"}</p>
             <p className="font-bold">Contas & Listas</p>
           </div>
 

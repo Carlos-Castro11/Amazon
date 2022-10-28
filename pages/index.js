@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 // COMPONENTS
 import { Navbar } from "../components/Navbar";
 import { Banner } from "../components/Banner";
 import { ProductFeed } from "../components/ProductFeed";
-import { useSession } from "next-auth/react";
 
 export default function Home({ products }) {
   return (

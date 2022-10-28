@@ -5,9 +5,11 @@ import {
   ArrowDownCircleIcon,
 } from "@heroicons/react/24/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export const Navbar = () => {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   return (
     <header>
@@ -15,6 +17,7 @@ export const Navbar = () => {
         {/* TOP NAV */}
         <div className="mx-3 flex items-center grow sm:grow-0 space-x-6">
           <img
+            onClick={() => router.push("/")}
             className="h-40 w-40 object-contain cursor-pointer"
             src="https://www.pentalic.com/wp-content/uploads/2018/12/Amazon-logo-white-small.png"
             alt=""
@@ -43,7 +46,10 @@ export const Navbar = () => {
             <p className="font-bold">& Pedidos</p>
           </div>
 
-          <div className="hover:underline cursor-pointer relative flex items-center">
+          <div
+            onClick={() => router.push("/checkout")}
+            className="hover:underline cursor-pointer relative flex items-center"
+          >
             <span className="absolute text-center top-0 right-0 md:right-12 h-4 w-4 bg-yellow-400 font-bold rounded-full text-black">
               0
             </span>

@@ -6,10 +6,13 @@ import {
 } from "@heroicons/react/24/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { selectItems } from "../../slices/basketSlice";
 
 export const Navbar = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const items = useSelector(selectItems);
 
   return (
     <header>
@@ -51,7 +54,7 @@ export const Navbar = () => {
             className="hover:underline cursor-pointer relative flex items-center"
           >
             <span className="absolute text-center top-0 right-0 md:right-12 h-4 w-4 bg-yellow-400 font-bold rounded-full text-black">
-              0
+              {items.length}
             </span>
 
             <ShoppingCartIcon className="h-10" />

@@ -1,11 +1,15 @@
 import { useState, React, useEffect } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import CurrencyFormat from "react-currency-format";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../../slices/basketSlice";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
 export const Product = ({ product }) => {
+  const dispatch = useDispatch();
+
   const [rating, setRating] = useState("");
 
   const [isPrime, setIsPrime] = useState("");
@@ -16,6 +20,12 @@ export const Product = ({ product }) => {
     );
     setIsPrime(Math.random() < 0.5);
   }, []);
+
+  const addItemToBasket = () => {
+    const x = { product };
+
+    dispatch(addToBasket(x));
+  };
 
   return (
     <div className="relative flex flex-col m-5 bg-white z-30 p-10 rounded-md shadow-md">
@@ -60,7 +70,10 @@ export const Product = ({ product }) => {
         </div>
       )}
 
-      <button className="font-bold p-2 text-xs md:text-sm bg-gradient-to-b from-yellow-200 to-yellow-400 border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 active:from-yellow-500 active:to-yellow-400">
+      <button
+        onClick={addItemToBasket}
+        className="font-bold p-2 text-xs md:text-sm bg-gradient-to-b from-yellow-200 to-yellow-400 border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 active:from-yellow-500 active:to-yellow-400"
+      >
         Adicionar ao carrinho
       </button>
     </div>

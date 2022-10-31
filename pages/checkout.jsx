@@ -1,9 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectItems } from "../slices/basketSlice";
+
+// COMPONENTS
 import { Navbar } from "../components/Navbar";
+import { CheckoutProduct } from "../components/CheckoutProduct";
 
 // import { Container } from './styles';
 
 function Checkout() {
+  const items = useSelector(selectItems);
   return (
     <div className="bg-gray-100">
       <Navbar />
@@ -17,8 +23,13 @@ function Checkout() {
           />
 
           <div className="flex flex-column p-5 mt-3 bg-white">
-            <h1 className="text-3xl border-b pb-4">Seu Carrinho</h1>
+            <h1 className="text-3xl border-b pb-4">
+              {items.length == 0 ? "Seu carrinho está vazio!" : "Seu carrinho:"}
+            </h1>
           </div>
+          {items.map((item, i) => (
+            <CheckoutProduct key={i} product={item} />
+          ))}
         </div>
 
         {/* left */}
